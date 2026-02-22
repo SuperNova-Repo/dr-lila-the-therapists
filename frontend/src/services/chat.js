@@ -36,4 +36,4 @@ export const chatService = {
     const response = await api.post(`/chat/regenerate/${messageId}`)
     return response.data
   },
-} 
+}
