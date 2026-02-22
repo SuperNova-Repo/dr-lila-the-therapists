@@ -18,13 +18,12 @@ jobs:
       
       - name: Configure Git
         run: |
-          git config user.name "🤖 Auto-Sync"
-          git config user.email "sync@actions.github.com"
+          git config user.name "Kostya Lolinger"
+          git config user.email "noreply@github.com"
       
       - name: Setup HF Remote
         run: |
-          git remote add hf https://USER:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Kostya-Lolinger/dr-lila-the-therapist 2>/dev/null || true
-          git remote -v
+          git remote add hf https://Kostya-Lolinger:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Kostya-Lolinger/dr-lila-the-therapist || true
       
       - name: Bi-Directional Sync
         run: |
@@ -32,9 +31,30 @@ jobs:
           echo "🔄 Starting Bi-Directional Sync"
           echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
           
-          # Fetch from HF
           echo "📥 Fetching from HuggingFace..."
           git fetch hf main 2>/dev/null || echo "⚠️  Fetch warning (might be first run)"
+          
+          if git rev-parse hf/main >/dev/null 2>&1; then
+            if ! git diff --quiet HEAD hf/main; then
+              echo "📥 HF has updates! Merging..."
+              git merge hf/main --no-edit --allow-unrelated-histories -m "Sync from HF [$(date '+%Y-%m-%d %H:%M')]"
+              git push origin main
+              echo "✅ HF → GitHub: Synced"
+            else
+              echo "ℹ️  HF → GitHub: No changes"
+            fi
+          fi
+          
+          echo "📤 Pushing to HuggingFace..."
+          if git push hf main --force 2>&1; then
+            echo "✅ GitHub → HF: Synced"
+          else
+            echo "⚠️  GitHub → HF: Push failed"
+          fi
+          
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+          echo "✅ Sync Complete!"
+          echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"          git fetch hf main 2>/dev/null || echo "⚠️  Fetch warning (might be first run)"
           
           # Check for HF updates
           if git rev-parse hf/main >/dev/null 2>&1; then
