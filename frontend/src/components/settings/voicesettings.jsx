@@ -29,7 +29,7 @@ function VoiceSettings({ profile, onSave, loading }) {
     setPlaying(voiceId)
     try {
       const result = await voiceService.textToSpeech(
-        'Hallo! Ich bin Dr. Lila. So klinge ich mit dieser Stimme.',
+        'Hallo! Ich bin Dr. Lila.',
         voiceId
       )
       
@@ -60,7 +60,6 @@ function VoiceSettings({ profile, onSave, loading }) {
               key={voice}
               className={`
                 flex items-center justify-between p-4 rounded-lg border-2 cursor-pointer
-                transition-colors
                 ${selectedVoice === voice
                   ? 'border-primary-500 bg-primary-500/10'
                   : 'border-dark-border hover:border-primary-500/50'
@@ -68,11 +67,9 @@ function VoiceSettings({ profile, onSave, loading }) {
               `}
               onClick={() => setSelectedVoice(voice)}
             >
-              <div>
-                <p className="font-medium capitalize">
-                  {voice.replace('_', ' ')}
-                </p>
-              </div>
+              <p className="font-medium capitalize">
+                {voice.replace('_', ' ')}
+              </p>
 
               <button
                 onClick={(e) => {
@@ -101,4 +98,4 @@ function VoiceSettings({ profile, onSave, loading }) {
   )
 }
 
-export default VoiceSettings 
+export default VoiceSettings
