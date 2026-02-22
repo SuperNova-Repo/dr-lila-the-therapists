@@ -23,7 +23,7 @@ jobs:
       
       - name: Setup HF Remote
         run: |
-          git remote add hf https://USER:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Kostya-Lolinger/dr-lila-therapist 2>/dev/null || true
+          git remote add hf https://USER:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/Kostya-Lolinger/dr-lila-the-therapist 2>/dev/null || true
           git remote -v
       
       - name: Bi-Directional Sync
