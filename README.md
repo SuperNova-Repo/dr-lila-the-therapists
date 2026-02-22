@@ -55,7 +55,7 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 - ✅ Responsive Design
 - ✅ Professionelle UI
 ---
-## 🚫 **LIZENZ & URHEBERRECHT** *(DEUTSCH)*
+## 🚫 **LIZENZ & URHEBERRECHT**
 
 ### **STRIKTE REGELN - ALLE RECHTE VORBEHALTEN**
 
@@ -70,7 +70,7 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 
 ---
 
-## 🚫 **LICENSE & COPYRIGHT** *(ENGLISH)*
+## 🚫 **LICENSE & COPYRIGHT**
 
 ### **STRICT RULES - ALL RIGHTS RESERVED**
 
