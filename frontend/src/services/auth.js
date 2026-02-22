@@ -20,11 +20,14 @@ export const authService = {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
     })
+    
+    console.log('🔑 authService.login response:', response.data)
     return response.data
   },
 
   async getMe() {
     const response = await api.get('/auth/me')
+    console.log('👤 authService.getMe response:', response.data)
     return response.data
   },
 
