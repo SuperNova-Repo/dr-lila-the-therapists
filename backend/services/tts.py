@@ -1,19 +1,15 @@
-from TTS.api import TTS
+from gtts import gTTS
 import os
 from backend.config import settings
 
 class TTSService:
     def __init__(self):
-        self.model_name = settings.TTS_MODEL
-        self.tts = TTS(self.model_name)
-        
-        # Available voices
         self.voices = {
             "default": "de",
             "female_calm": "de",
-            "female_energetic": "de",
+            "female_energetic": "en",
             "male_calm": "de",
-            "male_deep": "de"
+            "male_deep": "en"
         }
     
     def synthesize(
@@ -23,13 +19,14 @@ class TTSService:
         voice_id: str = "default",
         language: str = "de"
     ) -> str:
-        """Convert text to speech"""
+        """Convert text to speech using gTTS"""
         try:
-            self.tts.tts_to_file(
-                text=text,
-                file_path=output_path,
-                language=language
-            )
+            # Map voice_id to language (gTTS hat nur Sprachen, keine Stimmen)
+            lang = self.voices.get(voice_id, language)
+            
+            tts = gTTS(text=text, lang=lang, slow=False)
+            tts.save(output_path)
+            
             return output_path
             
         except Exception as e:
