@@ -1,12 +1,12 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { useAuthStore } from './stores/authStore'
+import { useAuthStore } from './stores/authstore'
 
-import Login from './components/Auth/Login'
-import Register from './components/Auth/Register'
-import ChatInterface from './components/Chat/ChatInterface'
-import SettingsPanel from './components/Settings/SettingsPanel'
-import Layout from './components/Layout/Layout'
+import Login from './components/auth/login'
+import Register from './components/auth/register'
+import ChatInterface from './components/chat/chatinterface'
+import SettingsPanel from './components/settings/settingspanel'
+import Layout from './components/layout/layout'
 
 function PrivateRoute({ children }) {
   const { isAuthenticated } = useAuthStore()
@@ -34,4 +34,4 @@ function App() {
   )
 }
 
-export default App 
+export default App
