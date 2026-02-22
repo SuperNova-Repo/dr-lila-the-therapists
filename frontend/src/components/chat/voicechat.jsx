@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FiPhone, FiPhoneOff } from 'react-icons/fi'
 import { voiceService } from '../../services/voice'
@@ -54,7 +54,6 @@ function VoiceChat() {
       mediaRecorderRef.current.start()
       setIsListening(true)
       
-      // Auto-stop after 10 seconds (adjust as needed)
       setTimeout(() => {
         if (isListening) {
           stopListening()
@@ -72,29 +71,22 @@ function VoiceChat() {
 
   const processAudio = async (audioBlob) => {
     try {
-      // Convert speech to text
       const sttResult = await voiceService.speechToText(audioBlob)
       const userText = sttResult.text
       setTranscript(userText)
 
       if (!userText.trim()) {
-        // Restart listening if no speech detected
         if (isActive) {
           setTimeout(startListening, 500)
         }
         return
       }
 
-      // Send to LLM
       const response = await chatService.sendMessage(chatId, userText)
-      
-      // Convert response to speech
       const ttsResult = await voiceService.textToSpeech(response.content)
       
-      // Play audio
       const audio = new Audio(ttsResult.audio_url)
       audio.onended = () => {
-        // Restart listening after bot finishes speaking
         if (isActive) {
           setTimeout(startListening, 500)
         }
@@ -141,4 +133,4 @@ function VoiceChat() {
   )
 }
 
-export default VoiceChat 
+export default VoiceChat
