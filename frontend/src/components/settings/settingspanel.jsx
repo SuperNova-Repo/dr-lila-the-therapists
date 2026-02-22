@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { FiUser, FiGlobe, FiVolume2, FiTrash2, FiSave } from 'react-icons/fi'
-import { useAuthStore } from '../../stores/authStore'
+import { FiUser, FiGlobe, FiVolume2, FiTrash2 } from 'react-icons/fi'
+import { useAuthStore } from '../../stores/authstore'
 import { settingsService } from '../../services/settings'
 import { authService } from '../../services/auth'
-import ProfileSettings from './ProfileSettings'
-import VoiceSettings from './VoiceSettings'
+import ProfileSettings from './profilesettings'
+import VoiceSettings from './voicesettings'
 
 function SettingsPanel() {
   const { t, i18n } = useTranslation()
   const navigate = useNavigate()
-  const { user, updateUser, logout } = useAuthStore()
+  const { updateUser, logout } = useAuthStore()
   
   const [activeTab, setActiveTab] = useState('profile')
   const [profile, setProfile] = useState(null)
@@ -46,7 +46,7 @@ function SettingsPanel() {
   }
 
   const handleDeleteAccount = async () => {
-    if (!confirm('Bist du SICHER, dass du dein Konto löschen möchtest? Dies kann nicht rückgängig gemacht werden!')) {
+    if (!confirm('Bist du SICHER, dass du dein Konto löschen möchtest?')) {
       return
     }
 
@@ -85,7 +85,6 @@ function SettingsPanel() {
           {t('settings')}
         </h1>
 
-        {/* Tabs */}
         <div className="flex space-x-2 mb-8 border-b border-dark-border">
           {tabs.map((tab) => (
             <button
@@ -105,7 +104,6 @@ function SettingsPanel() {
           ))}
         </div>
 
-        {/* Content */}
         <div className="card">
           {activeTab === 'profile' && (
             <ProfileSettings 
@@ -161,7 +159,6 @@ function SettingsPanel() {
                   <option value="Europe/Berlin">Europe/Berlin (MEZ)</option>
                   <option value="Europe/London">Europe/London (GMT)</option>
                   <option value="America/New_York">America/New_York (EST)</option>
-                  <option value="America/Los_Angeles">America/Los_Angeles (PST)</option>
                   <option value="UTC">UTC</option>
                 </select>
               </div>
@@ -177,13 +174,12 @@ function SettingsPanel() {
           )}
         </div>
 
-        {/* Danger Zone */}
         <div className="card mt-8 border-red-500/30">
           <h3 className="text-lg font-semibold text-red-400 mb-4">
             Gefahrenzone
           </h3>
           <p className="text-sm text-dark-text opacity-75 mb-4">
-            Das Löschen deines Kontos ist permanent und kann nicht rückgängig gemacht werden.
+            Das Löschen deines Kontos ist permanent.
           </p>
           <button
             onClick={handleDeleteAccount}
@@ -198,4 +194,4 @@ function SettingsPanel() {
   )
 }
 
-export default SettingsPanel 
+export default SettingsPanel
