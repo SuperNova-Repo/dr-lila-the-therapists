@@ -2,6 +2,9 @@
 setuptools>=69.0.0
 wheel>=0.42.0
 
+# NumPy (WICHTIG: kompatible Version!)
+numpy>=1.24.0,<2.0.0
+
 # FastAPI & Server
 fastapi==0.109.0
 uvicorn[standard]==0.27.0
@@ -35,6 +38,15 @@ gTTS==2.5.0
 faiss-cpu==1.7.4
 
 # Utilities
+python-dotenv==1.0.0
+pytz==2023.4
+requests==2.31.0
+pillow==10.2.0
+aiofiles==23.2.1
+
+# Audio processing
+librosa==0.10.1
+soundfile==0.12.1# Utilities
 python-dotenv==1.0.0
 pytz==2023.4
 requests==2.31.0
