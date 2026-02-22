@@ -2,17 +2,21 @@
 """Initialize database"""
 
 import sys
-from pathlib import Path
+import os
 
 # Add parent directory to path
-sys.path.insert(0, str(Path(__file__).parent.parent))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from backend.database import engine, Base
-from backend.models import User, Chat, Message
 
 def init_database():
     """Create all database tables"""
     print("Creating database tables...")
+    
+    # Import models to register them with Base
+    from backend.models.user import User
+    from backend.models.chat import Chat, Message
+    
     Base.metadata.create_all(bind=engine)
     print("✓ Database initialized successfully!")
 
