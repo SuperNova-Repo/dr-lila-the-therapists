@@ -21,4 +21,4 @@ export const useChatStore = create((set) => ({
   })),
   
   setLoading: (isLoading) => set({ isLoading })
-})) 
+}))
