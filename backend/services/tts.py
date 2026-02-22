@@ -37,4 +37,7 @@ class TTSService:
         """Get list of available voices"""
         return list(self.voices.keys())
 
+tts_service = TTSService()        """Get list of available voices"""
+        return list(self.voices.keys())
+
 tts_service = TTSService()
