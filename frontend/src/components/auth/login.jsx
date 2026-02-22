@@ -7,7 +7,7 @@ import { authService } from '../../services/auth'
 function Login() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { login } = useAuthStore()
+  const login = useAuthStore((state) => state.login)
   
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -20,31 +20,26 @@ function Login() {
     setLoading(true)
 
     try {
-      console.log('🔐 Step 1: Calling authService.login...', username)
+      console.log('Step 1: Login...', username)
       
       const loginData = await authService.login(username, password)
-      console.log('🔐 Step 2: Login response:', loginData)
-      console.log('🔑 Token received:', loginData.access_token?.substring(0, 30) + '...')
+      console.log('Step 2: Response:', loginData)
       
-      console.log('🔐 Step 3: Calling authService.getMe...')
       const userData = await authService.getMe()
-      console.log('👤 Step 4: User data:', userData)
+      console.log('Step 3: User:', userData)
       
-      console.log('🔐 Step 5: Calling authStore.login() with token + user...')
+      console.log('Step 4: Storing token...')
       login(loginData.access_token, userData)
       
-      console.log('✅ Step 6: Checking if token is stored...')
       const storedToken = localStorage.getItem('auth-token')
-      console.log('🔍 Token in localStorage:', storedToken?.substring(0, 30) + '...')
+      console.log('Step 5: Token stored?', storedToken ? 'YES' : 'NO')
       
-      console.log('✅ Step 7: Navigating to /')
       setTimeout(() => {
         navigate('/', { replace: true })
       }, 200)
       
     } catch (err) {
-      console.error('❌ Login failed:', err)
-      console.error('❌ Error details:', err.response?.data)
+      console.error('Login error:', err)
       setError(err.response?.data?.detail || 'Login fehlgeschlagen')
     } finally {
       setLoading(false)
@@ -64,7 +59,7 @@ function Login() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-2">
-              {t('username')}
+              Benutzername
             </label>
             <input
               type="text"
@@ -72,13 +67,12 @@ function Login() {
               onChange={(e) => setUsername(e.target.value)}
               className="input w-full"
               required
-              autoComplete="username"
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium mb-2">
-              {t('password')}
+              Passwort
             </label>
             <input
               type="password"
@@ -86,7 +80,6 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
               className="input w-full"
               required
-              autoComplete="current-password"
             />
           </div>
 
@@ -101,23 +94,11 @@ function Login() {
             disabled={loading}
             className="btn-primary w-full"
           >
-            {loading ? t('loading') : t('login')}
+            {loading ? 'Lädt...' : 'Anmelden'}
           </button>
         </form>
 
         <div className="mt-6 text-center">
-          <Link to="/register" className="text-primary-400 hover:text-primary-300">
-            {t('register')}
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export default Login      </div>
-    </div>
-  )
-}
+          <Link }
 
 export default Login
