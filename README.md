@@ -85,4 +85,3 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 
 ---
 > ©2026 SuperNova/Kostya Lolinger
----
