@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { FiTrash2, FiRefreshCw, FiVolume2, FiCopy, FiCheck } from 'react-icons/fi'
 import { chatService } from '../../services/chat'
 import { voiceService } from '../../services/voice'
-import { useChatStore } from '../../stores/chatStore'
+import { useChatStore } from '../../stores/chatstore'
 
 function MessageBubble({ message }) {
   const { t } = useTranslation()
@@ -28,8 +28,6 @@ function MessageBubble({ message }) {
   const handleRegenerate = async () => {
     try {
       const newMessage = await chatService.regenerateMessage(message.id)
-      
-      // Update message in store
       const updatedMessages = messages.map(m => 
         m.id === message.id ? newMessage : m
       )
@@ -46,7 +44,6 @@ function MessageBubble({ message }) {
     try {
       let url = audioUrl
       
-      // Generate audio if not cached
       if (!url) {
         const result = await voiceService.textToSpeech(message.content)
         url = result.audio_url
@@ -78,7 +75,6 @@ function MessageBubble({ message }) {
           : 'bg-primary-600'
         }
       `}>
-        {/* Header */}
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-semibold opacity-75">
             {isBot ? '💜 Dr. Lila' : 'Du'}
@@ -91,12 +87,10 @@ function MessageBubble({ message }) {
           </span>
         </div>
 
-        {/* Content */}
         <div className="text-sm leading-relaxed whitespace-pre-wrap">
           {message.content}
         </div>
 
-        {/* Actions */}
         <div className="flex items-center space-x-2 mt-3 pt-3 border-t border-dark-border/30">
           <button
             onClick={handleCopy}
@@ -140,4 +134,4 @@ function MessageBubble({ message }) {
   )
 }
 
-export default MessageBubble 
+export default MessageBubble
