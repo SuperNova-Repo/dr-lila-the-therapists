@@ -30,7 +30,7 @@ function ProfileSettings({ profile, onSave, loading }) {
     setUploading(true)
     try {
       await settingsService.uploadProfilePicture(file)
-      window.location.reload() // Reload to show new image
+      window.location.reload()
     } catch (err) {
       console.error('Error uploading file:', err)
       alert('Fehler beim Hochladen')
@@ -41,7 +41,6 @@ function ProfileSettings({ profile, onSave, loading }) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Profile Picture */}
       <div className="flex items-center space-x-6">
         <div className="w-24 h-24 rounded-full bg-dark-border flex items-center justify-center overflow-hidden">
           {profile.profile_picture ? (
@@ -67,13 +66,9 @@ function ProfileSettings({ profile, onSave, loading }) {
               disabled={uploading}
             />
           </label>
-          <p className="text-xs text-dark-text opacity-50 mt-2">
-            JPG, PNG oder WEBP (max. 5MB)
-          </p>
         </div>
       </div>
 
-      {/* Display Name */}
       <div>
         <label className="block text-sm font-medium mb-2">
           {t('display_name')}
@@ -88,7 +83,6 @@ function ProfileSettings({ profile, onSave, loading }) {
         />
       </div>
 
-      {/* Persona */}
       <div>
         <label className="block text-sm font-medium mb-2">
           {t('persona')}
@@ -99,14 +93,10 @@ function ProfileSettings({ profile, onSave, loading }) {
           onChange={handleChange}
           className="input w-full resize-none"
           rows="4"
-          placeholder="Erzähle Dr. Lila etwas über dich (optional)..."
+          placeholder="Erzähle Dr. Lila etwas über dich..."
         />
-        <p className="text-xs text-dark-text opacity-50 mt-2">
-          Diese Informationen helfen Dr. Lila, dich besser zu verstehen
-        </p>
       </div>
 
-      {/* Save Button */}
       <button
         type="submit"
         disabled={loading}
@@ -119,4 +109,4 @@ function ProfileSettings({ profile, onSave, loading }) {
   )
 }
 
-export default ProfileSettings 
+export default ProfileSettings
