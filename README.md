@@ -7,20 +7,16 @@ sdk: docker
 app_port: 7860
 ---
 # 🩺 Dr. Lila - The Therapist
-
-Eine KI-gestützte Therapie-Assistentin mit Sprach-Support, entwickelt mit FastAPI und React.
-
-----------------------------------------------------------------------
-
-An AI-powered therapy assistant with voice support, developed with FastAPI and React. 
-
+---
 ![Dr. Lila](https://img.shields.io/badge/Dr.%20Lila-The%20Therapist-purple)
 ![Python](https://img.shields.io/badge/Python-3.11-blue)
 ![React](https://img.shields.io/badge/React-18.2-61dafb)
-![Docker](https://img.shields.io/badge/Docker-Ready-2496ed)
-
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ed) 
 ---
-
+Eine KI-gestützte Therapie-Assistentin mit Sprach-Support, entwickelt mit FastAPI und React.
+---
+An AI-powered therapy assistant with voice support, developed with FastAPI and React. 
+---
 ## 🌟 Features
 
 ### 🔐 Authentifizierung
@@ -57,27 +53,7 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 - ✅ Dunkles Lila-Theme
 - ✅ Responsive Design
 - ✅ Professionelle UI
-
 ---
-
-## 🚀 Schnellstart
-
-### Voraussetzungen
-
-- **Docker** & **Docker Compose** installiert
-- **Git** installiert
-- (Optional) **Hugging Face Account** für API-Token
-
----
-
-## 📦 Installation
-
-### 1. Repository klonen
-
-```bash
-git clone https://github.com/DEIN_USERNAME/dr-lila-therapist.git
-cd dr-lila-therapist
-
 # 🚫 LIZENZ & URHEBERRECHT
 ## STRIKTE REGELN:©2026 SuperNova/Kostya Lolinger 
 ALLE RECHTE VORBEHALTEN
