@@ -39,8 +39,17 @@ COPY scripts/ ./scripts/
 # Copy frontend build
 COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 
-# Create necessary directories
-RUN mkdir -p /app/data/uploads /app/data/psychology_docs /app/data/db
+# Create necessary directories (OHNE data/ zu kopieren!)
+RUN mkdir -p \
+    /app/data/db \
+    /app/data/uploads/profiles \
+    /app/data/uploads/audio \
+    /app/data/psychology_docs \
+    /app/data/temp \
+    /app/data/faiss_index
+
+# Optional: Kopiere data/ nur wenn vorhanden
+COPY data/ ./data/ 2>/dev/null || true
 
 # Expose port
 EXPOSE 7860
