@@ -22,6 +22,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
+# Upgrade pip and install setuptools FIRST
+RUN pip install --upgrade pip setuptools wheel
+
 # Python dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -38,7 +41,7 @@ COPY scripts/ ./scripts/
 # Copy frontend build
 COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 
-# Create data directories (WITHOUT copying)
+# Create data directories
 RUN mkdir -p \
     /app/data/db \
     /app/data/uploads/profiles \
