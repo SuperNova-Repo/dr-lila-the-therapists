@@ -24,7 +24,7 @@ class Message(Base):
     role = Column(String, nullable=False)  # "user" or "assistant"
     content = Column(Text, nullable=False)
     audio_url = Column(String, nullable=True)
-    metadata = Column(JSON, nullable=True)  # For RAG sources, etc.
+    extra_data = Column(JSON, nullable=True)  # UMBENANNT von 'metadata' zu 'extra_data'
     created_at = Column(DateTime, default=datetime.utcnow)
     
     # Relationships
