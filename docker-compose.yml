@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./data:/app/data
+      - ./backend:/app/backend
+      - ./frontend/src:/app/frontend/src
+    environment:
+      - DATABASE_URL=sqlite:///./data/db/app.db
+      - JWT_SECRET=${JWT_SECRET:-dev_secret_change_in_production}
+      - HF_TOKEN=${HF_TOKEN}
+      - SYSTEM_PROMPT=${SYSTEM_PROMPT:-Du bist Dr. Lila, eine empathische KI-Therapeutin.}
+    env_file:
+      - .env
+    restart: unless-stopped 
