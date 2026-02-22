@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FiPlus, FiTrash2, FiMessageSquare } from 'react-icons/fi'
-import { useChatStore } from '../../stores/authStore'
+import { useChatStore } from '../../stores/chatstore'
 import { chatService } from '../../services/chat'
 
 function Sidebar() {
