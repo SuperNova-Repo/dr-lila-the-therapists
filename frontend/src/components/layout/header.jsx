@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FiSettings, FiLogOut } from 'react-icons/fi'
-import { useAuthStore } from '../../stores/authStore'
+import { useAuthStore } from '../../stores/authstore'
 
 function Header() {
   const { t } = useTranslation()
@@ -52,4 +52,4 @@ function Header() {
   )
 }
 
-export default Header 
+export default Header
