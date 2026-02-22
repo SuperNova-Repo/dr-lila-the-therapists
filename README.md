@@ -60,7 +60,7 @@ ALLE RECHTE VORBEHALTEN
 ✅ PRIVATGEBRAUCH für Ersteller
 ❌ KEINE Kopie/Vervielfältigung/Verteilung
 ❌ KEINE kommerzielle Nutzung
-❌ KEINE Modifikation durch Dritte
+❌ KEINE Modifikation durch Dritte\n
 **Dieses Repository dient ausschließlich 
 dem privaten Betrieb auf HuggingFace Spaces.**
 ----------------------------------------------------------------------
