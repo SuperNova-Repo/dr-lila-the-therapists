@@ -5,6 +5,7 @@ colorFrom: indigo
 colorTo: purple
 sdk: docker
 app_port: 7860
+license: cc-by-nc-nd-4.0
 ---
 # 🩺 Dr. Lila - The Therapist
 ---
