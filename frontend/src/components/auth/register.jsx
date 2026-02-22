@@ -33,7 +33,7 @@ function Register() {
       <div className="card max-w-md w-full mx-4">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-primary-400 mb-2">
-            💜 Dr. Lila
+            Dr. Lila
           </h1>
           <p className="text-dark-text opacity-75">{t('register')}</p>
         </div>
