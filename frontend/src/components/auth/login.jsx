@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useAuthStore } from '../../stores/authStore'
+import { useAuthStore } from '../../stores/authstore'
 import { authService } from '../../services/auth'
 
 function Login() {
