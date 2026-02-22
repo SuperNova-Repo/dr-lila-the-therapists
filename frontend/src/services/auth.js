@@ -31,4 +31,4 @@ export const authService = {
   async deleteAccount() {
     await api.delete('/auth/delete-account')
   },
-} 
+}
