@@ -46,13 +46,4 @@ aiofiles==23.2.1
 
 # Audio processing
 librosa==0.10.1
-soundfile==0.12.1# Utilities
-python-dotenv==1.0.0
-pytz==2023.4
-requests==2.31.0
-pillow==10.2.0
-aiofiles==23.2.1
-
-# Audio processing
-librosa==0.10.1
 soundfile==0.12.1
