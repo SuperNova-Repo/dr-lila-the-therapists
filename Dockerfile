@@ -26,20 +26,19 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Download Whisper model (optional, für schnelleren Start)
+# Download Whisper model
 RUN python -c "from transformers import WhisperProcessor, WhisperForConditionalGeneration; \
     WhisperProcessor.from_pretrained('openai/whisper-small'); \
     WhisperForConditionalGeneration.from_pretrained('openai/whisper-small')"
 
 # Copy backend code
 COPY backend/ ./backend/
-COPY data/ ./data/
 COPY scripts/ ./scripts/
 
 # Copy frontend build
 COPY --from=frontend-build /app/frontend/dist ./frontend/dist
 
-# Create necessary directories (OHNE data/ zu kopieren!)
+# Create data directories (WITHOUT copying)
 RUN mkdir -p \
     /app/data/db \
     /app/data/uploads/profiles \
@@ -47,9 +46,6 @@ RUN mkdir -p \
     /app/data/psychology_docs \
     /app/data/temp \
     /app/data/faiss_index
-
-# Optional: Kopiere data/ nur wenn vorhanden
-COPY data/ ./data/ 2>/dev/null || true
 
 # Expose port
 EXPOSE 7860
