@@ -2,15 +2,15 @@ import React, { useEffect, useState, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { FiSend, FiMic, FiMicOff } from 'react-icons/fi'
-import { useChatStore } from '../../stores/chatStore'
+import { useChatStore } from '../../stores/chatstore'
 import { chatService } from '../../services/chat'
 import { voiceService } from '../../services/voice'
-import MessageBubble from './MessageBubble'
+import MessageBubble from './messagebubble'
 
 function ChatInterface() {
   const { t } = useTranslation()
   const { chatId } = useParams()
-  const { currentChat, messages, setMessages, addMessage, isLoading, setLoading } = useChatStore()
+  const { messages, setMessages, addMessage, isLoading, setLoading } = useChatStore()
   
   const [input, setInput] = useState('')
   const [isRecording, setIsRecording] = useState(false)
@@ -50,20 +50,16 @@ function ChatInterface() {
     setInput('')
     setLoading(true)
 
+    const tempUserMsg = {
+      id: Date.now(),
+      role: 'user',
+      content: userMessage,
+      created_at: new Date().toISOString()
+    }
+    addMessage(tempUserMsg)
+
     try {
       const response = await chatService.sendMessage(chatId, userMessage)
-      
-      // Add user message (it's already in the response from backend)
-      // But we add it optimistically for better UX
-      const tempUserMsg = {
-        id: Date.now(),
-        role: 'user',
-        content: userMessage,
-        created_at: new Date().toISOString()
-      }
-      addMessage(tempUserMsg)
-      
-      // Add bot response
       addMessage(response)
     } catch (err) {
       console.error('Error sending message:', err)
@@ -93,8 +89,6 @@ function ChatInterface() {
       recorder.onstop = async () => {
         const audioBlob = new Blob(audioChunks.current, { type: 'audio/wav' })
         await handleAudioTranscription(audioBlob)
-        
-        // Stop all tracks
         stream.getTracks().forEach(track => track.stop())
       }
       
@@ -144,7 +138,6 @@ function ChatInterface() {
 
   return (
     <div className="h-full flex flex-col">
-      {/* Messages */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {messages.length === 0 ? (
           <div className="h-full flex items-center justify-center">
@@ -175,7 +168,6 @@ function ChatInterface() {
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Area */}
       <div className="border-t border-dark-border p-4 bg-dark-card">
         <div className="flex items-end space-x-2">
           <button
