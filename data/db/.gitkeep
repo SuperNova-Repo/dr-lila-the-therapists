@@ -1,0 +1,21 @@
+# Im Projekt-Root-Verzeichnis:
+mkdir -p data/db
+mkdir -p data/uploads/profiles
+mkdir -p data/uploads/audio
+mkdir -p data/psychology_docs
+mkdir -p data/temp
+mkdir -p data/faiss_index
+
+# .gitkeep-Dateien erstellen (damit Git leere Ordner trackt)
+touch data/db/.gitkeep
+touch data/uploads/.gitkeep
+touch data/uploads/profiles/.gitkeep
+touch data/uploads/audio/.gitkeep
+touch data/psychology_docs/.gitkeep
+touch data/temp/.gitkeep
+touch data/faiss_index/.gitkeep
+
+# Git hinzufügen
+git add data/
+git commit -m "Add data directory structure"
+git push 
