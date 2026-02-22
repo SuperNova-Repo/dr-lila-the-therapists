@@ -1,43 +1,43 @@
+# Setuptools first (fixes pkg_resources error)
+setuptools>=69.0.0
+wheel>=0.42.0
+
 # FastAPI & Server
-fastapi==0.108.0
-uvicorn[standard]==0.25.0
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
 python-multipart==0.0.6
 websockets==12.0
 
 # Database
 sqlalchemy==2.0.25
-alembic==1.13.1
 
 # Authentication
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 bcrypt==4.1.2
 
+# Pydantic
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
 # LLM & AI
-transformers==4.36.2
+transformers==4.37.0
 torch==2.1.2
 sentence-transformers==2.3.1
-huggingface-hub==0.20.2
+huggingface-hub==0.20.3
 
-# STT (Speech-to-Text)
+# STT (Speech-to-Text) - Lighter version
 openai-whisper==20231117
-librosa==0.10.1
 
-# TTS (Text-to-Speech)
-TTS==0.22.0
-pydub==0.25.1
+# TTS (Text-to-Speech) - Simpler alternative
+gTTS==2.5.0
 
-# RAG (Retrieval Augmented Generation)
+# RAG
 faiss-cpu==1.7.4
-langchain==0.1.4
-pypdf==3.17.4
 
 # Utilities
 python-dotenv==1.0.0
-pytz==2023.3
+pytz==2023.4
 requests==2.31.0
 pillow==10.2.0
 aiofiles==23.2.1
-
-# CORS
-python-cors==1.0.0 
