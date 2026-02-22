@@ -55,27 +55,34 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 - ✅ Responsive Design
 - ✅ Professionelle UI
 ---
-# 🚫 LIZENZ & URHEBERRECHT
-## STRIKTE REGELN:
-## ALLE RECHTE VORBEHALTEN
-## ✅ PRIVATGEBRAUCH für Ersteller
-## ❌ KEINE Kopie/Vervielfältigung/Verteilung
-## ❌ KEINE kommerzielle Nutzung
-## ❌ KEINE Modifikation durch Dritte
+## 🚫 **LIZENZ & URHEBERRECHT** *(DEUTSCH)*
 
-**Dieses Repository dient ausschließlich 
-dem privaten Betrieb auf HuggingFace Spaces.**
----
-# 🚫 LICENSE & COPYRIGHT
-## STRICT RULES: 
-## ALL RIGHTS RESERVED
-## ✅ PRIVACY USE for creators
-## ❌ NO copying/reproduction/distribution
-## ❌ NO commercial use
-## ❌ NO modification by third parties
+### **STRIKTE REGELN - ALLE RECHTE VORBEHALTEN**
 
-**This repository is exclusively for private use 
-on HuggingFace Spaces.**
+| ✅ **ERLAUBT** | ❌ **VERBOTEN** |
+|---------------|----------------|
+| Privatgebrauch für Ersteller | Kopie/Vervielfältigung |
+| Betrieb auf HF Spaces | Kommerzielle Nutzung |
+| Persönliche Modifikation | Modifikation durch Dritte |
+| | Verteilung/Weitergabe |
+
+> **Dieses Repository dient **ausschließlich** dem privaten Betrieb auf HuggingFace Spaces.**
+
 ---
-*©2026 SuperNova/Kostya Lolinger
+
+## 🚫 **LICENSE & COPYRIGHT** *(ENGLISH)*
+
+### **STRICT RULES - ALL RIGHTS RESERVED**
+
+| ✅ **ALLOWED** | ❌ **PROHIBITED** |
+|---------------|------------------|
+| Private use by creator | Copying/reproduction |
+| HF Spaces deployment | Commercial use |
+| Personal modification | Third-party modification |
+| | Distribution/sharing |
+
+> **This repository is **exclusively** for private use on HuggingFace Spaces.**
+
+---
+©2026 SuperNova/Kostya Lolinger
 ---
