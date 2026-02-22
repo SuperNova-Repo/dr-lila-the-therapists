@@ -62,7 +62,7 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 ## ❌ KEINE Kopie/Vervielfältigung/Verteilung
 ## ❌ KEINE kommerzielle Nutzung
 ## ❌ KEINE Modifikation durch Dritte
----
+
 **Dieses Repository dient ausschließlich 
 dem privaten Betrieb auf HuggingFace Spaces.**
 ---
@@ -73,7 +73,7 @@ dem privaten Betrieb auf HuggingFace Spaces.**
 ## ❌ NO copying/reproduction/distribution
 ## ❌ NO commercial use
 ## ❌ NO modification by third parties
----
+
 **This repository is exclusively for private use 
 on HuggingFace Spaces.**
 ---
