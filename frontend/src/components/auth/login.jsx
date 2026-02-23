@@ -7,7 +7,7 @@ import { authService } from '../../services/auth'
 function Login() {
   const { t } = useTranslation()
   const navigate = useNavigate()
-  const { login } = useAuthStore()
+  const login = useAuthStore((state) => state.login)
   
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -26,16 +26,17 @@ function Login() {
       console.log('🔐 Step 2: Login response:', loginData)
       console.log('🔑 Token received:', loginData.access_token?.substring(0, 30) + '...')
       
-      console.log('🔐 Step 3: Calling authService.getMe...')
+      // WICHTIG: Token SOFORT speichern BEVOR getMe() aufgerufen wird!
+      console.log('🔐 Step 3: Storing token in localStorage...')
+      localStorage.setItem('auth-token', loginData.access_token)
+      console.log('✅ Token stored!')
+      
+      console.log('🔐 Step 4: Calling authService.getMe...')
       const userData = await authService.getMe()
-      console.log('👤 Step 4: User data:', userData)
+      console.log('👤 Step 5: User data:', userData)
       
-      console.log('🔐 Step 5: Calling authStore.login() with token + user...')
+      console.log('🔐 Step 6: Calling authStore.login() with token + user...')
       login(loginData.access_token, userData)
-      
-      console.log('✅ Step 6: Checking if token is stored...')
-      const storedToken = localStorage.getItem('auth-token')
-      console.log('🔍 Token in localStorage:', storedToken?.substring(0, 30) + '...')
       
       console.log('✅ Step 7: Navigating to /')
       setTimeout(() => {
