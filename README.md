@@ -84,4 +84,4 @@ An AI-powered therapy assistant with voice support, developed with FastAPI and R
 > **This repository is **exclusively** for private use on HuggingFace Spaces.**
 
 ---
-> ©2026 SuperNova/Kostya Lolinger
+> ©2026 SuperNova/Kostya Lolinger 
