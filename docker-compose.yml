@@ -1,19 +1,31 @@
-version: '3.8'
+version: '3.9'
 
 services:
-  app:
-    build: .
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile  # Erstelle einen, falls nicht vorhanden (siehe unten)
     ports:
-      - "7860:7860"
+      - "8000:7860"         # Oder dein interner Port
     volumes:
       - ./data:/app/data
-      - ./backend:/app/backend
-      - ./frontend/src:/app/frontend/src
     environment:
+      - PYTHONUNBUFFERED=1
+      - HF_TOKEN=${HF_TOKEN}          # Falls gated Model (Qwen2.5-3B ist open)
       - DATABASE_URL=sqlite:///./data/db/app.db
-      - JWT_SECRET=${JWT_SECRET:-dev_secret_change_in_production}
-      - HF_TOKEN=${HF_TOKEN}
-      - SYSTEM_PROMPT=${SYSTEM_PROMPT:-Du bist Dr. Lila, eine empathische KI-Therapeutin.}
-    env_file:
-      - .env
-    restart: unless-stopped 
+      # Deine anderen Env-Vars (JWT_SECRET usw.)
+    restart: unless-stopped
+
+  # Optional: frontend (vite/react)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+    environment:
+      - VITE_API_URL=http://backend:8000
+    depends_on:
+      - backend
