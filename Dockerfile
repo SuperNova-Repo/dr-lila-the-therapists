@@ -67,47 +67,4 @@ ENV PORT=7860
 ENV HF_HUB_ENABLE_HF_TRANSFER=1
 
 # Start: DB init + Uvicorn
-CMD ["sh", "-c", "python scripts/init_db.py && uvicorn backend.main:app --host 0.0.0.0 --port ${PORT} --log-level info"]# Python Dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# === CUDA Torch für ZeroGPU (überschreibt CPU-Version aus requirements) ===
-RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 \
-    --force-reinstall --no-deps --no-cache-dir
-
-# Whisper-small vorab laden (für STT)
-RUN python -c "
-from transformers import WhisperProcessor, WhisperForConditionalGeneration
-WhisperProcessor.from_pretrained('openai/whisper-small')
-WhisperForConditionalGeneration.from_pretrained('openai/whisper-small')
-"
-
-# Backend-Code kopieren
-COPY backend/ ./backend/
-COPY scripts/ ./scripts/
-
-# Frontend-Build einbinden
-COPY --from=frontend-build /app/frontend/dist ./frontend/dist
-
-# Daten-Verzeichnisse anlegen (persistent in HF Spaces)
-RUN mkdir -p \
-    /app/data/db \
-    /app/data/uploads/profiles \
-    /app/data/uploads/audio \
-    /app/data/uploads/psychology_docs \
-    /app/data/temp \
-    /app/data/faiss_index
-
-# Berechtigungen (HF Spaces mag das manchmal)
-RUN chmod -R 777 /app/data
-
-# ================================================
-# Environment & Start
-# ================================================
-EXPOSE 7860
-ENV PYTHONUNBUFFERED=1
-ENV PORT=7860
-ENV HF_HUB_ENABLE_HF_TRANSFER=1
-
-# DB init + Server
 CMD ["sh", "-c", "python scripts/init_db.py && uvicorn backend.main:app --host 0.0.0.0 --port ${PORT} --log-level info"]
